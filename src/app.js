@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { addExpense, removeExpense, editExpense } from './actions/expenses';
@@ -17,11 +18,19 @@ store.subscribe(() => {
 });
 store.dispatch(addExpense({ description: 'Water bill' }));
 store.dispatch(addExpense({ description: 'Gas bill' }));
-store.dispatch(setTextFilter('Bill'));
 store.dispatch(setTextFilter('Water'));
+setTimeout(() => {
+    store.dispatch(setTextFilter('Red'))
+}, 5000)
 
+// Gives access to the store to all the componets from AppRouter
+const jsx = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
+);
 
 // console.log(getVislible())
 
 // console.log(store.getState());
-ReactDOM.render(<AppRouter />, document.getElementById('app'))     
+ReactDOM.render(jsx, document.getElementById('app'))     
