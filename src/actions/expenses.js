@@ -17,7 +17,6 @@ export const addExpense = (
         amount,
         createdAt
     }
-
 });
 
 // REMOVE_EXPENSE
