@@ -11,17 +11,13 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-store.subscribe(() => {
-    const state = store.getState();
-    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-    console.log(visibleExpenses)
-});
+const state = store.getState();
+const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+console.log(visibleExpenses)
+
 store.dispatch(addExpense({ description: 'Water bill', amount: 4500 }));
-store.dispatch(addExpense({ description: 'Gas bill' }));
-store.dispatch(setTextFilter('Water'));
-setTimeout(() => {
-    store.dispatch(setTextFilter('bill'))
-}, 3000)
+store.dispatch(addExpense({ description: 'Gas bill', createdAt: 1000 }));
+store.dispatch(addExpense({ description: 'Rent', amount: 109500 }));
 
 // Gives access to the store to all the componets from AppRouter
 const jsx = (

@@ -22,7 +22,6 @@ export default (state = filterReducerDefaultState, action) => {
                 ...state,
                 sortBy: 'date'
             }
-
         case 'SET_START_DATE':
             return {
                 ...state,
